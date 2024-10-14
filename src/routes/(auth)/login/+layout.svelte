@@ -1,3 +1,3 @@
-<div class="w-screen h-screen">
+<div class="w-screen overflow-auto h-screen">
     <slot />
 </div>

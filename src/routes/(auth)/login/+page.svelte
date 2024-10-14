@@ -47,7 +47,7 @@
                     initUser(res.data.data.token, res.data.data.refresh_token, JSON.stringify(profile.data.data.profile))
                     showLoginModal = false
                     loading = false
-                    goto('/')
+                    goto('/private/dashboard')
                 } else {
 
                     toast.error(profile.data.message);
