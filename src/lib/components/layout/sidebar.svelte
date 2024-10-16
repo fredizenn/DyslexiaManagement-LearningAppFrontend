@@ -66,14 +66,17 @@
 >
 	<SidebarWrapper divClass="h-full py-2">
 		<SidebarGroup ulClass="space-y-3 ">
-			<SidebarBrand
+			<div class="w-full flex py-3 items-center justify-center">
+				<Icon icon="hugeicons:ai-brain-01" class="text-gray-700 w-10 h-10" />
+			</div>
+			<!-- <SidebarBrand
 				{site}
 				aClass="flex items-center text-sm gap-2 m-4 p-2 justify-center"
 				imgClass="h-12 w-auto"
-			/>
+			/> -->
 
 			{#if menus.length}
-			<div class="space-y-6"> 
+			<div class="pt-4 space-y-6"> 
 				{#each menus as { label, icon, path, iconColor } (icon)}
 					<div class="px-1" in:fade out:fade>
 						<!-- <SidebarItem

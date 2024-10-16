@@ -27,19 +27,18 @@
 		<div></div>
 		<div class="flex flex-row-reverse items-center justify-center gap-x-4">
 			<button>
-				<Avatar>
-					<div class="flex items-center justify-center text-xs font-medium">F K</div>
-				</Avatar>
+				<Avatar size="xs" />
+					<!-- <div class="flex items-center justify-center text-xs font-medium">F K</div>
+				</Avatar> -->
 			</button>
 			<Dropdown containerClass="flex flex-col space-y-4">
+				<DropdownItem class="w-full"
+					><button class="w-full flex items-center gap-2 p-3"><Icon icon="hugeicons:profile-02" class="h-5 w-5" />Profile </button>
+				</DropdownItem>
 				<DropdownItem class="w-full">
 					<button on:click={() => logout()} class="w-full flex items-center gap-2 p-3">
 						<Icon icon="hugeicons:logout-02" class="h-5 w-5" />Logout
 					</button>
-				</DropdownItem>
-
-				<DropdownItem class="w-full"
-					><button class="w-full flex items-center gap-2 p-3"><Icon icon="hugeicons:profile-02" class="h-5 w-5" />Profile </button>
 				</DropdownItem>
 			</Dropdown>
 			<button>

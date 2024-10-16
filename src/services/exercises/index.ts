@@ -1,12 +1,24 @@
-import { P } from "flowbite-svelte";
-import client from "../../client";
-import type { IExercise } from "./model";
+import client from '../../client';
+import type { IExercise } from './model';
 
 export async function getExercises(): Promise<IExercise[]> {
-    const response = await client.get('/exercises/');
-    const data: IExercise[] = response.data;
-    
-    console.log({ data });
+	try {
+		const response = await client.get('/exercises/');
+		const data: IExercise[] = response.data;
+		return data;
+	} catch (e) {
+		console.error(e);
+		return [];
+	}
+}
 
-    return data;
+export async function getExercise(id: number): Promise<IExercise> {
+	try {
+		const response = await client.get(`/exercises/${id}/`);
+		const data: IExercise = response.data;
+		return data;
+	} catch (e) {
+		console.log(e);
+		return {} as IExercise;
+	}
 }

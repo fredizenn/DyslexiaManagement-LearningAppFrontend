@@ -1,15 +1,28 @@
 <script lang="ts">
 	import { getExercises } from "$svc/exercises";
+	import type { IExercise } from "$svc/exercises/model";
 	import { onMount } from "svelte";
+	import toast from "svelte-french-toast";
+	import ExerciseCard from "./exerciseCard.svelte";
 
     let busy = false
+    let exercises: IExercise[] = []
     async function fetchExercises() {
         try {
             busy = true
-            const res = await getExercises().then((res) => res)
-            console.log({res})
-        } catch (e) {
+            const res: any = await getExercises().then((res) => res)
+            if (res.success) {
+                console.log({res})
+                exercises = res.data
+                busy = false
+            } else {
+                busy = false
+                toast.error(res.message)
+            }
 
+        } catch (e: any) {
+            busy = false
+            toast.error(e.message)
         }
     }
 
@@ -17,3 +30,15 @@
         await fetchExercises()
     })
 </script>
+
+<div class="m-2 p-4 space-y-2 font-medium">
+    <div class="text-2xl">
+        Exercises
+    </div>
+    <div class="divide-y rounded-sm shadow max-w-lg">
+        {#each exercises as e, index}
+        <ExerciseCard exercise={e} />
+        {/each}
+    </div>
+</div>
+
