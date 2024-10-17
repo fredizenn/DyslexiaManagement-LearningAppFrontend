@@ -36,8 +36,7 @@
                 </div>
                 <div class="text-xs">{exercise.difficulty_level === 1 ? 'Easy' : exercise.difficulty_level === 2 ? 'Medium' : 'Difficult'}</div>
             </div>
-		</a>
-        
+		</a>  
 	</div>
     
 </div>
