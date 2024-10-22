@@ -3,5 +3,6 @@ export interface IExercise {
     title: string;
     description: string
     exercise_content: any
+    exercise_type: string
     difficulty_level: number  
 }

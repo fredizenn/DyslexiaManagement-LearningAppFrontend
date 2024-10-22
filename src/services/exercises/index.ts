@@ -22,3 +22,20 @@ export async function getExercise(id: number): Promise<IExercise> {
 		return {} as IExercise;
 	}
 }
+
+export async function updateExerciseProgress(id: number | undefined, exerciseData: any) {
+	try {
+		const response = await client.patch(`/progress/update/`, {
+			
+				...exerciseData,
+				exercise: id
+			
+		});
+		const ret = response
+		return ret;
+	} catch (e) {
+		console.log(e);
+		return {};
+	}
+
+}
