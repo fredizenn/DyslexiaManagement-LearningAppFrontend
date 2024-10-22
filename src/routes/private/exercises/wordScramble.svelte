@@ -101,7 +101,7 @@
 			const compare = values.word.toLowerCase() === currentWord.toLowerCase();
 			if (compare) {
 				toast.success('All right! You are correct!');
-				score += 33.33;
+				score += 25;
 				// questions = [...questions, {
 				//     index: questionsIndex,
 				//     score: score
