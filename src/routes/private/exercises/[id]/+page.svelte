@@ -15,6 +15,7 @@
 	import { z } from 'zod';
 	import WordScramble from '../wordScramble.svelte';
 	import Finish from '../finish.svelte';
+	import FillTheBlanks from '../fillTheBlanks.svelte';
 	let exercise: IExercise = {} as IExercise;
 	let loading = false;
 	let score = 0;
@@ -23,20 +24,20 @@
 	let exerciseSummary;
 	let interval: any;
 
-	$: gotoFinish = ({detail}: any) => {
+	$: gotoFinish = ({ detail }: any) => {
 		clearInterval(interval);
 		showFinishPage = detail.showFinishPage;
 		score = detail.score;
-	}
+	};
 
-	function start({detail}: any) {
+	function start({ detail }: any) {
 		if (detail) {
 			interval = setInterval(() => {
 				timeSpent += 1;
-			}, 1000)
+			}, 1000);
 		}
 	}
-	
+
 	async function fetchExercise() {
 		try {
 			loading = true;
@@ -55,7 +56,6 @@
 	}
 
 	$: formattedTime = `${String(Math.floor(timeSpent / 3600)).padStart(2, '0')}:${String(Math.floor((timeSpent % 3600) / 60)).padStart(2, '0')}:${String(timeSpent % 60).padStart(2, '0')}`;
-
 
 	onMount(async () => {
 		await fetchExercise();
@@ -80,17 +80,19 @@
 		</div>
 		<!-- {/if} -->
 		<div class="mx-auto h-full w-2/3 align-middle">
-		{#if !showFinishPage}
-			{#if exercise?.exercise_type === 'scramble' && exercise?.exercise_content}
-				<!-- {#each exercise?.exercise_content as ec, index} -->
-					<WordScramble {timeSpent} on:start={start} on:finish={gotoFinish} exercise={exercise} />
-				<!-- {/each} -->
+			{#if !showFinishPage}
+				{#if exercise?.exercise_type === 'scramble' && exercise?.exercise_content}
+					<!-- {#each exercise?.exercise_content as ec, index} -->
+					<WordScramble {timeSpent} on:start={start} on:finish={gotoFinish} {exercise} />
+				{:else if exercise?.exercise_type === 'blanks' && exercise?.exercise_content}
+					<FillTheBlanks {timeSpent} on:start={start} on:finish={gotoFinish} {exercise} />
+					<!-- {/each} -->
+				{/if}
+			{:else}
+				<div>
+					<Finish {score} />
+				</div>
 			{/if}
-		{:else}
-			<div>
-				<Finish {score}/>
-			</div>
-		{/if}
 		</div>
 	</div>
 </div>
