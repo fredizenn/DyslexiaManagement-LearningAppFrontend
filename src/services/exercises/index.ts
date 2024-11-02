@@ -43,7 +43,7 @@ export async function updateExerciseProgress(id: number | undefined, exerciseDat
 export async function speechToText(audio: any) {
 	try {
 		const formData = new FormData();
-		formData.append('audio_file', audio);
+		formData.append('audio', audio);
 		const response = await client.post('/speech-to-text/', formData);
 		const data = response.data;
 		return data;
