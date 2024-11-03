@@ -15,3 +15,42 @@ export function successToast(message: string) {
 		}
 	});
 }
+
+export function convertToBinary(value: string) {
+	const binaryData = atob(value);
+
+	const byteArray = new Uint8Array(binaryData.length);
+	for (let i = 0; i < binaryData.length; i++) {
+		byteArray[i] = binaryData.charCodeAt(i);
+	}
+
+	// Create a Blob from the Uint8Array
+	const blob = new Blob([byteArray], { type: 'image/jpeg' });
+	return blob;
+}
+
+export function base64ToImage(base64String: string, fileName: string, imageAlt?: string) {
+	const blob = new Blob(
+		[
+			new Uint8Array(
+				atob(base64String)
+					.split('')
+					.map((char) => char.charCodeAt(0))
+			)
+		],
+		{ type: 'image/jpeg' }
+	);
+	const url = URL.createObjectURL(blob);
+	const img = document.createElement('img');
+	img.src = url;
+	const output = img.src;
+	img.alt = imageAlt ?? fileName;
+	imageAlt = img.alt;
+
+	return {
+		output,
+		img,
+		fileName,
+		imageAlt
+	};
+}

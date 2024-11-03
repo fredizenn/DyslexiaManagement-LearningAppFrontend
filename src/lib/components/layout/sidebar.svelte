@@ -32,7 +32,6 @@
 	$: if (isActivePage) {
 		let splitResult: any = isActivePage?.split('/');
 
-		console.log({ splitResult });
 		if ((splitResult?.length ?? 0) > 2) {
 			isActivePage = `/private/${splitResult[2]}`;
 		}
@@ -41,8 +40,6 @@
 		// 	isActivePage = `/${splitResult[1]}/`;
 		// }
 	}
-
-	$: console.log({ isActivePage });
 
 	$: if (activeUrl) {
 		let splitResult: any = activeUrl?.split('/');

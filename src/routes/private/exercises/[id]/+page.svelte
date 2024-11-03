@@ -16,6 +16,7 @@
 	import WordScramble from '../wordScramble.svelte';
 	import Finish from '../finish.svelte';
 	import FillTheBlanks from '../fillTheBlanks.svelte';
+	import Matching from '../matching.svelte';
 	let exercise: IExercise = {} as IExercise;
 	let loading = false;
 	let score = 0;
@@ -86,6 +87,9 @@
 					<WordScramble {timeSpent} on:start={start} on:finish={gotoFinish} {exercise} />
 				{:else if exercise?.exercise_type === 'blanks' && exercise?.exercise_content}
 					<FillTheBlanks {timeSpent} on:start={start} on:finish={gotoFinish} {exercise} />
+
+				{:else if exercise?.exercise_type === 'matching' && exercise?.exercise_content}
+					<Matching {timeSpent} on:start={start} on:finish={gotoFinish} {exercise} />
 					<!-- {/each} -->
 				{/if}
 			{:else}
