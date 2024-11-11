@@ -33,7 +33,7 @@
 			</button>
 			<Dropdown containerClass="flex flex-col space-y-4">
 				<DropdownItem class="w-full"
-					><button class="w-full flex items-center gap-2 p-3"><Icon icon="hugeicons:profile-02" class="h-5 w-5" />Profile </button>
+					><button on:click={() => goto('/private/profile')} class="w-full flex items-center gap-2 p-3"><Icon icon="hugeicons:profile-02" class="h-5 w-5" />Your profile </button>
 				</DropdownItem>
 				<DropdownItem class="w-full">
 					<button on:click={() => logout()} class="w-full flex items-center gap-2 p-3">

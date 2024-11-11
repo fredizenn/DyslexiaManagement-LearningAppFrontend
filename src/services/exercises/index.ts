@@ -19,25 +19,22 @@ export async function getExercise(id: number): Promise<IExercise> {
 		return data;
 	} catch (e) {
 		console.log(e);
-		return {} as IExercise;
+		return e as IExercise;
 	}
 }
 
 export async function updateExerciseProgress(id: number | undefined, exerciseData: any) {
 	try {
 		const response = await client.patch(`/progress/update/`, {
-			
-				...exerciseData,
-				exercise: id
-			
+			...exerciseData,
+			exercise: id
 		});
-		const ret = response
+		const ret = response;
 		return ret;
 	} catch (e) {
 		console.log(e);
-		return {};
+		return e;
 	}
-
 }
 
 export async function speechToText(audio: any) {
@@ -49,6 +46,20 @@ export async function speechToText(audio: any) {
 		return data;
 	} catch (e) {
 		console.log(e);
-		return {};
+		return e;
+	}
+}
+
+export async function matchAnswer(answer: string, userInput: string) {
+	try {
+		const response = await client.post('/verify-answer/', {
+			actual_answer: answer,
+			user_answer: userInput
+		});
+		const data = response.data;
+		return data;
+	} catch (e) {
+		console.log(e);
+		return e;
 	}
 }

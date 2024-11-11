@@ -2,6 +2,7 @@ import { goto } from "$app/navigation";
 import { writable } from "svelte/store";
 
 export const isAuthenticated = writable(false);
+export const fontSize = writable('10');
 export async function storeTokens(token: string, refreshToken: string) {
     localStorage.setItem('t', token);
     localStorage.setItem('r_t', refreshToken);
@@ -25,6 +26,7 @@ export async function initUser(token: string, refreshToken: string, profile: any
     localStorage.setItem('t', token);
     localStorage.setItem('r_t', refreshToken);
     localStorage.setItem('p', profile);
+   
     isAuthenticated.set(true);
 }
 

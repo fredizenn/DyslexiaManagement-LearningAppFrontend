@@ -9,7 +9,7 @@
 	import client from '../../../client';
 	import { successToast } from '$lib/utils';
 	import toast, { Toaster} from 'svelte-french-toast';
-	import { initUser, storeTokens } from '$lib/stores/auth';
+	import { fontSize, initUser, storeTokens } from '$lib/stores/auth';
 	import { goto } from '$app/navigation';
 
     let showLoginModal = false;
@@ -45,6 +45,7 @@
                 if (profile.data.success) {
                     successToast(res.data.message);
                     initUser(res.data.data.token, res.data.data.refresh_token, JSON.stringify(profile.data.data.profile))
+                    fontSize.set(profile.data.data.profile.preferred_font_size)
                     showLoginModal = false
                     loading = false
                     goto('/private/dashboard')
@@ -96,7 +97,7 @@
             <div class="flex flex-col space-y-6">
                 <TextField name="username" required label="Username" />
                 <TextField name="password" required label="Password" type="password" />
-                <ActionButton disabled={loading}  type="submit" label={loading ? 'Logging in...' : 'Login'} otherClasses="mx-auto align-middle" />
+                <ActionButton disabled={loading}  type="submit" label={loading ? 'Logging in...' : 'Login'} otherClasses="p-2 w-full mx-auto align-middle" />
             </div>
             </Form>
         </div>

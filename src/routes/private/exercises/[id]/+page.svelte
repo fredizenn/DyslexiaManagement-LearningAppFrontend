@@ -17,6 +17,8 @@
 	import Finish from '../finish.svelte';
 	import FillTheBlanks from '../fillTheBlanks.svelte';
 	import Matching from '../matching.svelte';
+	import Comprehension from '../comprehension.svelte';
+	import { fontSize } from '$lib/stores/auth';
 	let exercise: IExercise = {} as IExercise;
 	let loading = false;
 	let score = 0;
@@ -91,6 +93,8 @@
 				{:else if exercise?.exercise_type === 'matching' && exercise?.exercise_content}
 					<Matching {timeSpent} on:start={start} on:finish={gotoFinish} {exercise} />
 					<!-- {/each} -->
+				{:else if exercise?.exercise_type === 'comprehension' && exercise?.exercise_content}
+					<Comprehension {timeSpent} on:start={start} on:finish={gotoFinish} {exercise} />
 				{/if}
 			{:else}
 				<div>

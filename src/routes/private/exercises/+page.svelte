@@ -4,6 +4,7 @@
 	import { onMount } from "svelte";
 	import toast from "svelte-french-toast";
 	import ExerciseCard from "./exerciseCard.svelte";
+	import { fly } from "svelte/transition";
 
     let busy = false
     let exercises: IExercise[] = []
@@ -31,8 +32,8 @@
     })
 </script>
 
-<div class="m-2 p-4 space-y-2 font-medium">
-    <div class="text-2xl">
+<div class="m-2 p-4 space-y-2 font-medium" in:fly={{ x: -300, duration: 500 }}>
+    <div class="text-2xl font-extralight">
         Exercises
     </div>
     <div class="divide-y rounded-sm shadow max-w-lg">

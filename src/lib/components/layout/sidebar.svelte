@@ -26,8 +26,8 @@
 
 	$: activeUrl = $page.url.pathname;
 
-	let activeClass = 'bg-indigo-100 bg-opacity-5 text-indigo-800 group font-medium flex';
-	let nonActiveClass = 'hover:bg-indigo-700 text-gray-600';
+	let activeClass = 'bg-cyan-50 bg-opacity-5 text-cyan-800 group font-medium flex';
+	let nonActiveClass = 'hover:bg-cyan-700 text-gray-600';
 
 	$: if (isActivePage) {
 		let splitResult: any = isActivePage?.split('/');
@@ -81,12 +81,12 @@
 							class="w-2/4 mx-auto align-middle flex items-center justify-center gap-2 rounded-sm py-3 text-sm font-medium transition delay-100 duration-200 ease-in-out hover:-translate-y-1 hover:scale-100"
 						>
 							<svelte:fragment slot="icon"> -->
-							<a href={path} class:bg-indigo-100={path === isActivePage} class="hover:bg-indigo-100 w-2/4 mx-auto align-middle flex items-center justify-center gap-2 rounded-xl p-3 text-sm font-medium transition delay-100 duration-200 ease-in-out hover:-translate-y-1 hover:scale-100">
+							<a href={path} class:bg-cyan-100={path === isActivePage} class="hover:bg-cyan-100 w-2/4 mx-auto align-middle flex items-center justify-center gap-2 rounded-xl p-3 text-sm font-medium transition delay-100 duration-200 ease-in-out hover:-translate-y-1 hover:scale-100">
 								<Icon
 								{icon}
 								style="font-size: 21px"
 								class={path === isActivePage
-									? 'text-indigo-700'
+									? 'text-cyan-700'
 									: 'text-gray-800 text-opacity-80'}
 							/>
 							</a>
