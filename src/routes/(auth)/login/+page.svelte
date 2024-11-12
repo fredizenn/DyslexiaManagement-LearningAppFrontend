@@ -53,10 +53,12 @@
 
                     toast.error(profile.data.message);
                     loading = false;
+                    return;
                 }
             } else {
                 toast.error(res.data.message);
                 loading = false;
+            
             }   
         } catch (error: any) {
             toast.error(error);
