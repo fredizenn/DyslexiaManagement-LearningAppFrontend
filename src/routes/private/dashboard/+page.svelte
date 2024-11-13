@@ -91,7 +91,7 @@
 				{#if loadingProgressSummary}
 					<Loader />
 				{:else}
-					{x?.average_score}%
+					{x?.average_score || ''}%
 				{/if}
 			</div>
 		</div>

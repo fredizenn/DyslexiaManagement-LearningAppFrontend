@@ -1,12 +1,32 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import ActionButton from "$lib/components/ui/actionButton.svelte";
+	import { suggestExercises } from "$svc/exercises";
 	import Icon from "@iconify/svelte";
+	import { onMount } from "svelte";
+	import toast from "svelte-french-toast";
 
     export let score = 0
     export let indices: any = []
 
     $: score
+
+    async function suggested() {
+        try {
+            const res = await suggestExercises()
+            if(res.status === 200) {
+                console.log(res.data)
+            } else {
+                toast.error("An error occurred")
+            }
+        } catch (e: any) {
+            toast.error(e.message)
+        }
+    }
+
+    onMount(async() => {
+        await suggested()
+    })
 </script>
 <div class="flex flex-col h-full w-full space-y-4 items-center p-4 justify-center">
     <!-- <div class="flex items-center justify-center py-2 gap-2">

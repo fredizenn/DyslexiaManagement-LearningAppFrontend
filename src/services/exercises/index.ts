@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import client from '../../client';
 import type { IExercise } from './model';
 
@@ -61,5 +62,15 @@ export async function matchAnswer(answer: string, userInput: string) {
 	} catch (e) {
 		console.log(e);
 		return e;
+	}
+}
+
+export async function suggestExercises() {
+	try {
+		const response = await client.get('/suggested-exercise/');
+		const data = response;
+		return data
+	} catch(e: any) {
+		return e
 	}
 }
