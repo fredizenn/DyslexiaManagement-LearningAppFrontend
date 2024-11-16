@@ -1,4 +1,5 @@
 import { goto } from "$app/navigation";
+import { P } from "flowbite-svelte";
 import { writable } from "svelte/store";
 
 export const isAuthenticated = writable(false);
@@ -11,8 +12,13 @@ export async function storeTokens(token: string, refreshToken: string) {
 export function getUser(): boolean {
 	let token;
 	if (typeof window !== 'undefined') token = localStorage.getItem('t');
-    isAuthenticated.set(!!token);
-	return !!token;
+    if (token) {
+        return true
+    } else {
+        return false
+    }
+    // isAuthenticated.set(!!token);
+	// return !!token;
 }
 
 export function getProfile(): any {
@@ -36,5 +42,20 @@ export async function logout() {
     localStorage.removeItem('p');
     goto('/login');
     isAuthenticated.set(false);
+}
+
+export async function init() {
+	if (typeof window !== 'undefined') {
+		const savedToken: any = localStorage.getItem('t');
+        const rToken: any = localStorage.getItem('r_t');
+		const savedProfile: any = localStorage.getItem('p');
+		
+		if (savedToken) {
+			await initUser(savedToken, rToken, savedProfile);
+		} 
+
+        isAuthenticated.set(!!savedToken);
+	
+	}
 }
 // export function init

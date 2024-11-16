@@ -83,7 +83,7 @@
 				loading = false;
 			}
 		} catch (error: any) {
-			toast.error(error);
+			toast.error(error.message);
 			loading = false;
 		}
 	};

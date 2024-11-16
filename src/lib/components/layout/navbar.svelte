@@ -41,10 +41,10 @@
 					</button>
 				</DropdownItem>
 			</Dropdown>
-			<button>
+			<!-- <button>
 				<Icon icon="hugeicons:notification-03" class="h-5 w-5" />
-			</button>
-			<button type="button">
+			</button> -->
+			<button on:click={() => goto('/private/profile/update')} type="button">
 				<Icon icon="hugeicons:settings-03" class="h-5 w-5" />
 			</button>
 		</div>
