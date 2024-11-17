@@ -2,7 +2,7 @@ import { browser } from '$app/environment';
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-    baseURL: 'http://127.0.0.1:8000/api',
+    baseURL: 'https://dyslexia-mgt-api-auhxg4bpcrekdyhc.uksouth-01.azurewebsites.net/api',
     timeout: 30000,
 });
 
